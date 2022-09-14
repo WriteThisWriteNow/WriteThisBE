@@ -10,3 +10,18 @@ spring:
     properties.hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
       format_sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    servlet:
+      multipart:
+        max-file-size: 5MB
+  server:
+    port: 8080
+    error:
+      include-message: always
+    servlet:
+      context-path: /api/v1
+  logging:
+    level:
+      root: info
