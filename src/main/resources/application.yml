@@ -16,12 +16,17 @@ spring:
     servlet:
       multipart:
         max-file-size: 5MB
-  server:
-    port: 8080
-    error:
-      include-message: always
-    servlet:
-      context-path: /api/v1
-  logging:
-    level:
-      root: info
+server:
+  port: 8080
+  error:
+    include-message: always
+  servlet:
+    context-path: ${wsapi.config.api-version}
+
+logging:
+  level:
+    root: info
+
+wsapi:
+  config:
+    api-version: /v1
