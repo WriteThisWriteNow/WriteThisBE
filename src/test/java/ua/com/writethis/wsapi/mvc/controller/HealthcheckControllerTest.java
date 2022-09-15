@@ -2,26 +2,27 @@ package ua.com.writethis.wsapi.mvc.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@WebMvcTest(HealthcheckController.class)
+@ActiveProfiles("test")
+@SpringBootTest
 class HealthcheckControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
-
+    private HealthcheckController healthcheckController;
 
     @Test
-    void healthcheckShouldPassTest() throws Exception {
-        mockMvc
-                .perform(get("/healthcheck"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("I'm alive!!!")));
+    void healthcheck() {
+        //given
+        final String EXPECTED = "I'm alive!!!";
+
+        //when
+        String responseBody = healthcheckController.healthcheck().getBody();
+
+        //then
+        assertThat(responseBody).isEqualTo(EXPECTED);
     }
 }
