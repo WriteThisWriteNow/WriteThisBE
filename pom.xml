@@ -18,6 +18,7 @@
     <properties>
         <java.version>17</java.version>
         <spring.boot.version>2.7.3</spring.boot.version>
+        <springfox-boot-starter-version>3.0.0</springfox-boot-starter-version>
         <h2.version>2.1.214</h2.version>
         <postgreesql.version>42.5.0</postgreesql.version>
         <lombok.version>1.18.24</lombok.version>
@@ -47,6 +48,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring.boot.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${springfox-boot-starter-version}</version>
         </dependency>
 
         <dependency>
@@ -94,6 +100,7 @@
                 <configuration>
                     <excludes>
                         <exclude>ua/com/writethis/wsapi/WsApiApplication.class</exclude>
+                        <exclude>ua/com/writethis/wsapi/config/SwaggerConfig.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

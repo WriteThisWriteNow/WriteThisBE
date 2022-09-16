@@ -57,15 +57,30 @@ or you can just execute the command:
 ``` sh
 ./mvnw spring-boot:run
 ```
+
 ...or for Windows:
+
 ``` commandline
 mvn spring-boot:run
 ```
 
+# Other documantation
+
+## Swagger
+
+To access to swagger page go to `{root_path}/swagger-ui/`
+F.e. `http://localhost:8080/v1/swagger-ui/`
+
 [1]: https://download.oracle.com/java/17/archive/jdk-17.0.4.1_windows-x64_bin.exe
+
 [2]: https://sdkman.io/install
+
 [3]: https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+
 [4]: https://docs.docker.com/engine/install/ubuntu/#installation-methods
+
 [5]: https://docs.microsoft.com/uk-ua/windows/wsl/install
+
 [6]: https://maven.apache.org/download.cgi
+
 [7]: https://maven.apache.org/install.html
