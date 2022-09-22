@@ -1,0 +1,3 @@
+wsapi:
+  cors:
+    allowed-origins: ${ALLOWED_ORIGINS:https://writethis.com.ua}

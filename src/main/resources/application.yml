@@ -30,3 +30,9 @@ logging:
 wsapi:
   config:
     api-version: /v1
+  cors:
+    allowed-origins: ${ALLOWED_ORIGINS:http://localhost:3000}
+  jwt:
+    secretKey: ${JWT_SECRET_KEY:LongEnoughSecretKey}
+    tokenPrefix: "Bearer "
+    tokenExpirationDays: 7
