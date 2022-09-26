@@ -52,7 +52,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
     private boolean isAuthenticationRequest(HttpServletRequest request) {
         String servletPath = request.getServletPath();
-        return servletPath.equals("/login") || servletPath.equals("/token/refresh");
+        return servletPath.equals("/login");
     }
 
     private void setTokenInContext() {
