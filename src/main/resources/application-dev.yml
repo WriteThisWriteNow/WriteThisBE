@@ -5,3 +5,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: false
+
+wsapi:
+  cors:
+    allowed-origins: ${ALLOWED_ORIGINS:https://dev.writethis.com.ua}

@@ -64,7 +64,7 @@ or you can just execute the command:
 mvn spring-boot:run
 ```
 
-# Other documantation
+# Other documentation
 
 ## Swagger
 
