@@ -5,7 +5,4 @@ spring:
     password: sa
     driverClassName: org.h2.Driver
   jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: update
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
