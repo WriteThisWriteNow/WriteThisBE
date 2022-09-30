@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+wsapi:
+  cors:
+    allowed-origins: '/**'
+  jwt:
+    secretKey: ${JWT_SECRET_KEY:LongEnoughSecretKey}
