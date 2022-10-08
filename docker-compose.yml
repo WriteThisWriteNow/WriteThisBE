@@ -41,3 +41,4 @@ services:
       - db
     environment:
       HOST: db
+      SPRING_PROFILES_ACTIVE: local

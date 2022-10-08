@@ -3,7 +3,6 @@
 ---
 
 ## Run for FE
-
 ***!!! If you are Windows user, you need first install [wsl2][5]*** and [maven][6] ([how to install][7]).
 
 If you are an FE developer, and you want just to run the back-end part,
@@ -22,7 +21,6 @@ docker-compose up
 
 
 ## 1. Preparing
-
 - **Install Java**. Application is running on Java JDK 17.
   To make sure that you are using the correct version - `java -version`. Install for [Windows][1]. For Linux is
   convenient to use [sdkman][2].
@@ -31,7 +29,6 @@ docker-compose up
 <hr/>
 
 ## 2. Build project
-
 Run `./mvnw clean install`
 or without tests `./mvnw clean install -DskipTests`
 
@@ -42,7 +39,6 @@ or without tests `mvn clean install -DskipTests`
 <hr/>
 
 ## 3. Run locally
-
 Before running, you have to up the database:
 
 ``` sh
@@ -65,11 +61,46 @@ mvn spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
 # Other documentation
-
 ## Swagger
-
 To access to swagger page go to `{root_path}/swagger-ui/`
 F.e. `http://localhost:8080/v1/swagger-ui/`
+
+## Authentication
+### Basic authentication
+For the first time, you must send a simple POST request to the `/login` URL (`http://localhost:8080/v1/login`).
+You'll get the 403 response status. And you will get a cookie with XSRF-TOKEN in it.
+To log in, you have to send a POST request to the `/login` URL with a body like this:
+```json
+{
+  "email": "your@email.com",
+  "password": "Your strong enough password"
+}
+```
+Also, you have to set the XSRF token to header - `"X-XSRF-TOKEN" : "<token copied from cookies>"`
+
+After successfully logging you'll get the response with status 200. And in headers, you'll get the `Authorization`
+header with an authentication token that looks like `Bearer <someLongEnoughToken>`.
+Notice that it expires in 1 week by default.
+
+For the following requests to API, you have to set that header (`"Authorization" : "Bearer <token>"`)
+
+In summary - you have to have two headers with each request:
+
+| Header name   | Header value                  |
+|---------------|-------------------------------|
+| X-XSRF-TOKEN  | <some-generated-token>        |
+| Authorization | Bearer <some-generated-token> |
+
+### Local authentication
+A local environment has five basic users already:
+
+| **Email**  | **Password** |
+|------------|--------------|
+| superadmin | superadmin   |
+| admin      | admin        |
+| manager    | manager      |
+| author     | author       |
+| reader     | reader       |
 
 [1]: https://download.oracle.com/java/17/archive/jdk-17.0.4.1_windows-x64_bin.exe
 [2]: https://sdkman.io/install
