@@ -6,9 +6,10 @@
 ***!!! If you are Windows user, you need first install [wsl2][5]*** and [maven][6] ([how to install][7]).
 
 If you are an FE developer, and you want just to run the back-end part,
-then you'll be enough to install docker (see [step 1](README.md/#1.-preparing)), and after that just execute command :
+then you'll be enough to install docker (see [step 1](README.md/#1.-preparing)) and run it. 
+And after that just execute command in project root directory:
 
-_... with build (for first run):_
+_... with build (for first run after code update):_
 ```sh
 docker-compose up --build
 ```
@@ -69,7 +70,7 @@ F.e. `http://localhost:8080/v1/swagger-ui/`
 ### Basic authentication
 For the first time, you must send a simple POST request to the `/login` URL (`http://localhost:8080/v1/login`).
 You'll get the 403 response status. And you will get a cookie with XSRF-TOKEN in it.
-To log in, you have to send a POST request to the `/login` URL with a body like this:
+To log in, you have to send a POST request to the `/login` URL with a form-data body (not json) like this:
 ```json
 {
   "email": "your@email.com",
@@ -86,10 +87,10 @@ For the following requests to API, you have to set that header (`"Authorization"
 
 In summary - you have to have two headers with each request:
 
-| Header name   | Header value                  |
-|---------------|-------------------------------|
-| X-XSRF-TOKEN  | <some-generated-token>        |
-| Authorization | Bearer <some-generated-token> |
+| Header name   | Header value                    |
+|---------------|---------------------------------|
+| X-XSRF-TOKEN  | `<some-generated-token>`        |
+| Authorization | `Bearer <some-generated-token>` |
 
 ### Local authentication
 A local environment has five basic users already:
