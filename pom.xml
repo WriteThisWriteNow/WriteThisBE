@@ -11,7 +11,7 @@
 
     <groupId>ua.com.writethis</groupId>
     <artifactId>ws-api</artifactId>
-    <version>0.1.6</version>
+    <version>0.2.0</version>
     <name>ws-api</name>
     <description>Backend project for Write This</description>
 
@@ -48,6 +48,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -7,3 +7,6 @@ wsapi:
     allowed-origins: '/**'
   jwt:
     secretKey: ${JWT_SECRET_KEY:LongEnoughSecretKey}
+  host:
+    protocol: http
+    address: ${wsapi.host.protocol}://localhost:8080/v1

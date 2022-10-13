@@ -14,6 +14,7 @@ import ua.com.writethis.wsapi.mvc.repository.RoleRepository;
 import ua.com.writethis.wsapi.mvc.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 
 @Profile("local")
 @DependsOn("basicInitializationConfig")
@@ -44,6 +45,8 @@ public class LocalInitializationConfig implements CommandLineRunner {
             user.setEmail(email);
             user.setPassword(passwordEncoder.encode(email));
             user.setRoles(Sets.newHashSet(role));
+            user.setCreationDate(LocalDate.now());
+            user.setDisabled(false);
 
             userRepository.save(user);
         }

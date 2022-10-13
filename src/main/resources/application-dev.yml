@@ -5,3 +5,6 @@ spring:
 wsapi:
   cors:
     allowed-origins: ${ALLOWED_ORIGINS:https://dev.writethis.com.ua}
+  host:
+    protocol: https
+    address: ${wsapi.host.protocol}://api.dev.writethis.com.ua/v1
