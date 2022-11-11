@@ -37,7 +37,7 @@ class UserServiceImplTest {
         user.setRoles(new HashSet<>());
 
         //when
-        when(repository.findByEmail(EMAIL)).thenReturn(Optional.of(user));
+        when(repository.findByEmailAndDisabledIsFalse(EMAIL)).thenReturn(Optional.of(user));
 
         UserDetails userDetails = userService.loadUserByUsername(EMAIL);
 
@@ -51,7 +51,7 @@ class UserServiceImplTest {
         final String EMAIL = "email";
 
         //when
-        when(repository.findByEmail(EMAIL)).thenReturn(Optional.empty());
+        when(repository.findByEmailAndDisabledIsFalse(EMAIL)).thenReturn(Optional.empty());
 
         //then
         assertThrows(RecordNotFoundException.class, () -> userService.loadUserByUsername(EMAIL));

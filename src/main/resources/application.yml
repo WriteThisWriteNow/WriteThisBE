@@ -18,7 +18,7 @@ spring:
         max-file-size: 5MB
   mail:
     host: <host>
-    port: <port>
+    port: 0000
     username: system@${wsapi.domain.root}
     password: <password>
     properties.mail.smtp:
@@ -49,8 +49,10 @@ wsapi:
     tokenExpirationDays: 7
   domain:
     root: writethis.com.ua
-  email-verification-token:
-    expirationMinutes: 5
+  emailVerification:
+    token:
+      expirationMinutes: 15
+    redirectUrl: http://localhost:3000
   host:
     protocol: https
-    address: ${wsapi.host.protocol}://api.writethis.com.ua/v1
+    address: ${wsapi.host.protocol}://api.${wsapi.domain.root}/v1

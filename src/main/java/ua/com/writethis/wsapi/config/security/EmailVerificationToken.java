@@ -1,5 +1,7 @@
 package ua.com.writethis.wsapi.config.security;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 import ua.com.writethis.wsapi.exception.DecodeEmailVerificationTokenException;
 import ua.com.writethis.wsapi.exception.EncodeEmailVerificationTokenException;
@@ -14,8 +16,10 @@ import java.time.LocalDateTime;
 import java.util.Base64;
 
 @ToString
+@EqualsAndHashCode
 public class EmailVerificationToken implements Serializable {
 
+    @Getter
     private final String email;
     private final LocalDateTime expiresAt;
 
@@ -24,9 +28,9 @@ public class EmailVerificationToken implements Serializable {
         this.expiresAt = LocalDateTime.now().plusMinutes(expireInMinutes);
     }
 
-    private static EmailVerificationToken decode(String encodedToken) {
+    public static EmailVerificationToken decode(String encodedToken) {
         try {
-            byte[] tokenBytes = Base64.getDecoder().decode(encodedToken);
+            byte[] tokenBytes = Base64.getUrlDecoder().decode(encodedToken);
             ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(tokenBytes));
             EmailVerificationToken token = (EmailVerificationToken) ois.readObject();
             ois.close();
@@ -42,7 +46,7 @@ public class EmailVerificationToken implements Serializable {
             ObjectOutputStream oos = new ObjectOutputStream(baos);
             oos.writeObject(this);
             oos.close();
-            return Base64.getEncoder().encodeToString(baos.toByteArray());
+            return Base64.getUrlEncoder().encodeToString(baos.toByteArray());
         } catch (IOException e) {
             throw new EncodeEmailVerificationTokenException();
         }
