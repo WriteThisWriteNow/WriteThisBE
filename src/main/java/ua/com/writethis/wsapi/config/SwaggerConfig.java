@@ -38,7 +38,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("WriteThis REST API")
                 .description("WriteThis REST API")
-                .version("0.2.0")
+                .version("0.2.1")
                 .license("Apache License 2.0")
                 .licenseUrl("https://github.com/WriteThisWriteNow/WriteThisBE/blob/main/LICENSE")
                 .contact(new Contact("Support", "", "writethiswritenow@gmail.com"))

@@ -1,4 +1,4 @@
-package ua.com.writethis.wsapi.config.security;
+package ua.com.writethis.wsapi.mail;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

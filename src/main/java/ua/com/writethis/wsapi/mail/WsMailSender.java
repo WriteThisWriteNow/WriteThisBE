@@ -1,16 +1,18 @@
 package ua.com.writethis.wsapi.mail;
 
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class WsMailSender {
@@ -24,7 +26,6 @@ public class WsMailSender {
     @Value("${wsapi.emailVerification.token.expirationMinutes}")
     private int expirationMinutes;
 
-    @SneakyThrows
     public void sendEmailVerificationEmail(String email, String token) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String until = LocalDateTime.now().plusMinutes(expirationMinutes).format(dateTimeFormatter);
@@ -37,16 +38,21 @@ public class WsMailSender {
                 .replace("[[TTL]]", String.valueOf(expirationMinutes))
                 .replace("[[UNTIL]]", until);
 
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setSubject("\"Write this\" - підтвердження реєстрації");
-        helper.setFrom("verification@" + rootDomain);
-        helper.setTo(email);
+            helper.setSubject("\"Write this\" - підтвердження реєстрації");
+            helper.setFrom("verification@" + rootDomain);
+            helper.setTo(email);
 
-        boolean isHtml = true;
-        helper.setText(html, isHtml);
+            boolean isHtml = true;
+            helper.setText(html, isHtml);
 
-        javaMailSender.send(message);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            String exceptionMessage = "Unable to set email metadata";
+            log.error(exceptionMessage, e);
+        }
     }
 }
