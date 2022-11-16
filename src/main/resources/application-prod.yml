@@ -5,3 +5,5 @@ spring:
 wsapi:
   cors:
     allowed-origins: ${ALLOWED_ORIGINS:https://writethis.com.ua}
+  emailVerification:
+    redirectUrl: https://${wsapi.domain.root}

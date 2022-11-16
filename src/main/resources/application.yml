@@ -16,6 +16,16 @@ spring:
     servlet:
       multipart:
         max-file-size: 5MB
+  mail:
+    host: <host>
+    port: 0000
+    username: system@${wsapi.domain.root}
+    password: <password>
+    properties.mail.smtp:
+      auth: true
+      starttls:
+        enable: true
+        required: true
 
 server:
   port: 8080
@@ -37,3 +47,12 @@ wsapi:
     secretKey: ${JWT_SECRET_KEY}
     tokenPrefix: "Bearer "
     tokenExpirationDays: 7
+  domain:
+    root: writethis.com.ua
+  emailVerification:
+    token:
+      expirationMinutes: 15
+    redirectUrl: http://localhost:3000
+  host:
+    protocol: https
+    address: ${wsapi.host.protocol}://api.${wsapi.domain.root}/v1

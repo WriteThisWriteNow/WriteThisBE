@@ -2,7 +2,7 @@ package ua.com.writethis.wsapi.config.security;
 
 public enum AuthList {
     SWAGGER("/swagger-resources/**", "/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/swagger-ui/**"),
-    WHITE_LIST("/login", "/healthcheck");
+    WHITE_LIST("/login", "/healthcheck", "/register/**");
 
     private final String[] authentications;
 

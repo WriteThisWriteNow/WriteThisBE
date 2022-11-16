@@ -1,7 +1,14 @@
 spring:
   datasource:
     url: jdbc:${DATABASE_URL}
+  mail:
+    username: system@$dev.{wsapi.domain.root}
 
 wsapi:
   cors:
     allowed-origins: ${ALLOWED_ORIGINS:https://dev.writethis.com.ua}
+  emailVerification:
+    redirectUrl: https://dev.${wsapi.domain.root}
+  host:
+    protocol: https
+    address: ${wsapi.host.protocol}://api.dev.${wsapi.domain.root}/v1
