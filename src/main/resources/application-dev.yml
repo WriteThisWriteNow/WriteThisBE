@@ -1,6 +1,8 @@
 spring:
   datasource:
     url: jdbc:${DATABASE_URL}
+  mail:
+    username: system@$dev.{wsapi.domain.root}
 
 wsapi:
   cors:
