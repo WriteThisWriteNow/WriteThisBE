@@ -38,11 +38,13 @@ services:
     ports:
       - "8080:8080"
       - "587:587"
+      - "5005:5005"
     links:
       - db
     environment:
       HOST: db
       SPRING_PROFILES_ACTIVE: local
-      SPRING_MAIL_HOST: mail.dev.writethis.com.ua
+      SPRING_MAIL_HOST: mail.writethis.com.ua
       SPRING_MAIL_PASSWORD: <password>
       SPRING_MAIL_PORT: 587
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n"
