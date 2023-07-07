@@ -18,7 +18,7 @@
     <properties>
         <java.version>17</java.version>
         <springfox-boot-starter-version>3.0.0</springfox-boot-starter-version>
-        <h2.version>2.1.214</h2.version>
+        <h2.version>2.2.220</h2.version>
         <postgreesql.version>42.5.1</postgreesql.version>
         <lombok.version>1.18.24</lombok.version>
         <maven-surefire-plugin-version>3.0.0-M1</maven-surefire-plugin-version>
